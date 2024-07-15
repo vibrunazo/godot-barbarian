@@ -1,3 +1,4 @@
+class_name Projectile
 extends Area3D
 
 ## Movement speed in meters per second
