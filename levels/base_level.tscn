@@ -44,7 +44,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
 material = SubResource("StandardMaterial3D_3kg6o")
 
-[node name="RayPickerCamera" parent="." instance=ExtResource("1_ehljf")]
+[node name="RayPickerCamera" parent="." node_paths=PackedStringArray("turret_manager") instance=ExtResource("1_ehljf")]
+turret_manager = NodePath("../TurretManager")
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_mb34m")

@@ -1,8 +1,9 @@
+class_name TurretManager
 extends Node3D
 
 @export var turret_scene: PackedScene
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var turret = turret_scene.instantiate()
+func build_turret(turret_position: Vector3) -> void:
+	var turret: Node3D = turret_scene.instantiate()
 	add_child(turret)
+	turret.global_position = turret_position
