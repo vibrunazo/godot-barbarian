@@ -3,6 +3,7 @@ extends Node3D
 @export var projectile_scene: PackedScene
 
 @onready var attack_timer: Timer = $AttackTimer
+@onready var spawn_pos: Node3D = %SpawnPos
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +18,7 @@ func _process(delta: float) -> void:
 func spawn_projectile() -> void:
 	var new_projectile: Area3D = projectile_scene.instantiate() as Area3D
 	add_child(new_projectile)
-	new_projectile.global_position = global_position
+	new_projectile.global_position = spawn_pos.global_position
 
 func _on_attack_timer() -> void:
 	print('attack')

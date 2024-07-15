@@ -3,6 +3,7 @@ extends Node3D
 
 @export var turret_scene: PackedScene
 
+## Builds a turret at given global position
 func build_turret(turret_position: Vector3) -> void:
 	var turret: Node3D = turret_scene.instantiate()
 	add_child(turret)

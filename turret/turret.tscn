@@ -32,4 +32,8 @@ mesh = SubResource("CylinderMesh_c2pok")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 1)
 mesh = SubResource("CylinderMesh_w5cyf")
 
+[node name="SpawnPos" type="Node3D" parent="TurretBase/TurretTop/Barrel"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.339654, 0)
+
 [node name="AttackTimer" type="Timer" parent="."]
