@@ -19,4 +19,4 @@ func _process(delta: float) -> void:
 func do_damage() -> void:
 	if base:
 		base.take_damage()
-		queue_free()
+		set_process(false)
