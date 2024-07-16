@@ -1,6 +1,7 @@
 class_name Turret
 extends Node3D
 
+@export var turret_range: float = 10.0
 @export var projectile_scene: PackedScene
 
 @onready var attack_timer: Timer = $AttackTimer
@@ -19,24 +20,35 @@ func _physics_process(delta: float) -> void:
 
 func rotate_to_target() -> void:
 	if not enemy_path: return
-	var enemy: Enemy = find_closest_enemy()
-	if not enemy: return
-	target = enemy
-	look_at(enemy.global_position, Vector3.UP, true)
+	target = find_best_enemy()
+	if not target: return
+	look_at(target.global_position, Vector3.UP, true)
 
+## Returns the enemy that is closest to the turret
 func find_closest_enemy() -> Enemy:
-	var enemy: Enemy
+	var enemy: Enemy = null
 	var best_score: float
 	for child in enemy_path.get_children():
 		if child is Enemy:
 			var distance: float = global_position.distance_to(child.global_position)
-			@warning_ignore("unassigned_variable")
-			if not enemy:
+			if distance > turret_range: continue
+			if not enemy or distance < best_score:
 				enemy = child
 				best_score = distance
-			elif distance < best_score:
+	return enemy
+
+## Returns the enemy that is furthest in the path
+func find_best_enemy() -> Enemy:
+	var enemy: Enemy = null
+	var best_score: float
+	for child in enemy_path.get_children():
+		if child is Enemy:
+			var distance: float = global_position.distance_to(child.global_position)
+			if distance > turret_range: continue
+			var progress: float = child.progress
+			if not enemy or progress > best_score:
 				enemy = child
-				best_score = distance
+				best_score = progress
 	return enemy
 
 func spawn_projectile() -> void:
