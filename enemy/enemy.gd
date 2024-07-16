@@ -4,8 +4,13 @@ extends PathFollow3D
 ## In meters per second
 @export var speed: float = 5
 @export var max_health: float = 50
+
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 var health: float = 50:
 	set(value):
+		if value < health:
+			animation_player.play("TakeDamage")
 		health = clampf(value, 0, max_health)
 		if health <= 0:
 			die()

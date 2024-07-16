@@ -6,6 +6,7 @@ extends Node3D
 
 @onready var attack_timer: Timer = $AttackTimer
 @onready var spawn_pos: Node3D = %SpawnPos
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var enemy_path: Path3D
 var target: Enemy
@@ -51,12 +52,17 @@ func find_best_enemy() -> Enemy:
 				best_score = progress
 	return enemy
 
-func spawn_projectile() -> void:
+func attack() -> void:
 	if not target: return
+	spawn_projectile()
+	animation_player.play("fire")
+	
+
+func spawn_projectile() -> void:
 	var new_projectile: Projectile = projectile_scene.instantiate()
 	add_child(new_projectile)
 	new_projectile.global_position = spawn_pos.global_position
 	new_projectile.direction = global_transform.basis.z
 
 func _on_attack_timer() -> void:
-	spawn_projectile()
+	attack()
