@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cexwic4uo35q7"]
+[gd_scene load_steps=16 format=3 uid="uid://cexwic4uo35q7"]
 
 [ext_resource type="PackedScene" uid="uid://cyrr8ihsr5fpx" path="res://camera/ray_picker_camera.tscn" id="1_ehljf"]
 [ext_resource type="MeshLibrary" uid="uid://bj5ngcwdgqcd7" path="res://mesh_libraries/space_library.tres" id="1_mb34m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://turret/turret_manager.gd" id="5_dijc4"]
 [ext_resource type="PackedScene" uid="uid://dca1j4a74265h" path="res://turret/turret.tscn" id="6_do3xi"]
 [ext_resource type="Script" path="res://ui/bank.gd" id="8_a5n27"]
+[ext_resource type="PackedScene" uid="uid://cm8tu3u7up1dp" path="res://game/difficulty_manager.tscn" id="9_48gdr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iyh3t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -62,10 +63,11 @@ data = {
 "cells": PackedInt32Array(65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 2, 0, 65532, 65534, 0, 65532, 2, 0, 65533, 2, 0, 65534, 65534, 0, 65534, 2, 0, 65535, 65534, 0, 65535, 2, 0, 0, 65534, 0, 0, 2, 0, 1, 65534, 0, 1, 2, 0, 2, 65534, 0, 2, 2, 0, 3, 65534, 0, 3, 2, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 65532, 65535, 0)
 }
 
-[node name="EnemyPath" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("difficulty_manager")]
 curve = SubResource("Curve3D_nh1ja")
 script = ExtResource("3_6ula7")
 enemy_scene = ExtResource("2_4m0mp")
+difficulty_manager = NodePath("../DifficultyManager")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-0.9, 0, -0.9, 0.1, 0.9, 0.1, 0.9, 0)
@@ -133,3 +135,5 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 text = "placeholder"
 label_settings = SubResource("LabelSettings_njm1j")
+
+[node name="DifficultyManager" parent="." instance=ExtResource("9_48gdr")]

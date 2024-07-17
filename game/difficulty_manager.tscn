@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm8tu3u7up1dp"]
+
+[ext_resource type="Script" path="res://game/difficulty_manager.gd" id="1_cklnc"]
+
+[sub_resource type="Curve" id="Curve_6be53"]
+min_value = 0.25
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0, Vector2(1, 0.6), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="DifficultyManager" type="Node"]
+script = ExtResource("1_cklnc")
+game_length = 60.0
+spawn_time_curve = SubResource("Curve_6be53")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
