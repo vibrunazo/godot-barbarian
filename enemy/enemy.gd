@@ -33,6 +33,7 @@ func do_damage() -> void:
 	if base:
 		base.take_damage()
 		set_process(false)
+		queue_free()
 
 func die() -> void:
 	if bank:

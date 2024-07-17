@@ -7,6 +7,7 @@ albedo_color = Color(0.74, 0.2664, 0.2664, 1)
 
 [node name="Base" type="Node3D" groups=["base"]]
 script = ExtResource("1_tvla3")
+max_health = 10
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

@@ -137,3 +137,5 @@ text = "placeholder"
 label_settings = SubResource("LabelSettings_njm1j")
 
 [node name="DifficultyManager" parent="." instance=ExtResource("9_48gdr")]
+
+[connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
