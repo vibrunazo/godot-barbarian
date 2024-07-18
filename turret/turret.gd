@@ -7,6 +7,7 @@ extends Node3D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var spawn_pos: Node3D = %SpawnPos
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var turret_base: Node3D = $TurretBase
 
 var enemy_path: Path3D
 var target: Enemy
@@ -23,7 +24,7 @@ func rotate_to_target() -> void:
 	if not enemy_path: return
 	target = find_best_enemy()
 	if not target: return
-	look_at(target.global_position, Vector3.UP, true)
+	turret_base.look_at(target.global_position, Vector3.UP, true)
 
 ## Returns the enemy that is closest to the turret
 func find_closest_enemy() -> Enemy:
@@ -62,7 +63,7 @@ func spawn_projectile() -> void:
 	var new_projectile: Projectile = projectile_scene.instantiate()
 	add_child(new_projectile)
 	new_projectile.global_position = spawn_pos.global_position
-	new_projectile.direction = global_transform.basis.z
+	new_projectile.direction = turret_base.global_transform.basis.z
 
 func _on_attack_timer() -> void:
 	attack()
