@@ -5,7 +5,7 @@ extends Path3D
 ## Reference to the difficulty manager, which calculates spawn cooldown per game time
 @export var difficulty_manager: DifficultyManager
 ## The layer with the win screen that we'll show when we win
-@export var victory_layer: CanvasLayer
+@export var victory_layer: VictoryLayer
 ## Time between spawns in seconds
 @export var spawn_cooldown: float = 2.0
 
@@ -40,7 +40,7 @@ func enemy_defeated() -> void:
 		
 func win() -> void:
 	print("you won")
-	if victory_layer: victory_layer.show()
+	if victory_layer: victory_layer.victory()
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_enemy()
