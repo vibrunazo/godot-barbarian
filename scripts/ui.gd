@@ -24,6 +24,6 @@ func toggle_fullscreen() -> void:
 
 func toggle_speed() -> void:
 	if Engine.time_scale == 1:
-		Engine.time_scale = 3
+		Engine.time_scale = 5
 	else:
 		Engine.time_scale = 1

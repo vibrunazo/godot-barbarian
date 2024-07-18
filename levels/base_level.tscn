@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cexwic4uo35q7"]
+[gd_scene load_steps=17 format=3 uid="uid://cexwic4uo35q7"]
 
 [ext_resource type="PackedScene" uid="uid://cyrr8ihsr5fpx" path="res://camera/ray_picker_camera.tscn" id="1_ehljf"]
 [ext_resource type="MeshLibrary" uid="uid://bj5ngcwdgqcd7" path="res://mesh_libraries/space_library.tres" id="1_mb34m"]
@@ -38,6 +38,11 @@ font_size = 64
 outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_elhpc"]
+font_size = 64
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
 [node name="BaseLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -63,11 +68,12 @@ data = {
 "cells": PackedInt32Array(65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 2, 0, 65532, 65534, 0, 65532, 2, 0, 65533, 2, 0, 65534, 65534, 0, 65534, 2, 0, 65535, 65534, 0, 65535, 2, 0, 0, 65534, 0, 0, 2, 0, 1, 65534, 0, 1, 2, 0, 2, 65534, 0, 2, 2, 0, 3, 65534, 0, 3, 2, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 1, 0, 4, 2, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0, 65532, 65535, 0)
 }
 
-[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("difficulty_manager")]
+[node name="EnemyPath" type="Path3D" parent="." node_paths=PackedStringArray("difficulty_manager", "victory_layer")]
 curve = SubResource("Curve3D_nh1ja")
 script = ExtResource("3_6ula7")
 enemy_scene = ExtResource("2_4m0mp")
 difficulty_manager = NodePath("../DifficultyManager")
+victory_layer = NodePath("../VictoryLayer")
 
 [node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-0.9, 0, -0.9, 0.1, 0.9, 0.1, 0.9, 0)
@@ -137,5 +143,31 @@ text = "placeholder"
 label_settings = SubResource("LabelSettings_njm1j")
 
 [node name="DifficultyManager" parent="." instance=ExtResource("9_48gdr")]
+
+[node name="VictoryLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VictoryLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.588235)
+
+[node name="Label" type="Label" parent="VictoryLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -131.5
+offset_top = -44.0
+offset_right = 131.5
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You win!"
+label_settings = SubResource("LabelSettings_elhpc")
 
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]
