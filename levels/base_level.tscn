@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dca1j4a74265h" path="res://turret/turret.tscn" id="6_do3xi"]
 [ext_resource type="Script" path="res://ui/bank.gd" id="8_a5n27"]
 [ext_resource type="PackedScene" uid="uid://cm8tu3u7up1dp" path="res://game/difficulty_manager.tscn" id="9_48gdr"]
+[ext_resource type="PackedScene" uid="uid://b6vx3yew3vwyq" path="res://ui/victory_layer.tscn" id="10_6gjld"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iyh3t"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -36,11 +37,6 @@ point_count = 5
 [sub_resource type="LabelSettings" id="LabelSettings_njm1j"]
 font_size = 64
 outline_size = 16
-outline_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_elhpc"]
-font_size = 64
-outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
@@ -144,30 +140,7 @@ label_settings = SubResource("LabelSettings_njm1j")
 
 [node name="DifficultyManager" parent="." instance=ExtResource("9_48gdr")]
 
-[node name="VictoryLayer" type="CanvasLayer" parent="."]
+[node name="VictoryLayer" parent="." instance=ExtResource("10_6gjld")]
 visible = false
-
-[node name="ColorRect" type="ColorRect" parent="VictoryLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.588235)
-
-[node name="Label" type="Label" parent="VictoryLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -131.5
-offset_top = -44.0
-offset_right = 131.5
-offset_bottom = 44.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "You win!"
-label_settings = SubResource("LabelSettings_elhpc")
 
 [connection signal="stop_spawning_enemies" from="DifficultyManager" to="EnemyPath" method="_on_difficulty_manager_stop_spawning_enemies"]

@@ -10,13 +10,13 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_at8qg"]
 min_value = 10.0
-max_value = 110.0
-_data = [Vector2(0, 10), 0.0, 100.0, 0, 1, Vector2(1, 110), 100.0, 0.0, 1, 0]
+max_value = 40.0
+_data = [Vector2(0, 10), 0.0, 30.0, 0, 1, Vector2(1, 40), 30.0, 0.0, 1, 0]
 point_count = 2
 
 [node name="DifficultyManager" type="Node"]
 script = ExtResource("1_cklnc")
-game_length = 120.0
+game_length = 60.0
 spawn_time_curve = SubResource("Curve_6be53")
 enemy_health_curve = SubResource("Curve_at8qg")
 
