@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3vc7whhrus0p"]
+[gd_scene load_steps=9 format=3 uid="uid://c3vc7whhrus0p"]
+
+[ext_resource type="PackedScene" uid="uid://bfial8cax36wb" path="res://assets/Tree.glb" id="1_1n7nw"]
+[ext_resource type="PackedScene" uid="uid://cda4mp5l5081x" path="res://assets/Rocks.glb" id="2_31w2j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20ndv"]
-albedo_color = Color(0.800491, 0.800491, 0.800491, 1)
+blend_mode = 1
+albedo_color = Color(0.2484, 0.2484, 0.2484, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_j6vx6"]
 material = SubResource("StandardMaterial3D_20ndv")
@@ -11,7 +15,8 @@ size = Vector3(4, 0.1, 4)
 data = PackedVector3Array(-2, 0.05, 2, 2, 0.05, 2, -2, -0.05, 2, 2, 0.05, 2, 2, -0.05, 2, -2, -0.05, 2, 2, 0.05, -2, -2, 0.05, -2, 2, -0.05, -2, -2, 0.05, -2, -2, -0.05, -2, 2, -0.05, -2, 2, 0.05, 2, 2, 0.05, -2, 2, -0.05, 2, 2, 0.05, -2, 2, -0.05, -2, 2, -0.05, 2, -2, 0.05, -2, -2, 0.05, 2, -2, -0.05, -2, -2, 0.05, 2, -2, -0.05, 2, -2, -0.05, -2, 2, 0.05, 2, -2, 0.05, 2, 2, 0.05, -2, -2, 0.05, 2, -2, 0.05, -2, 2, 0.05, -2, -2, -0.05, 2, 2, -0.05, 2, -2, -0.05, -2, 2, -0.05, 2, 2, -0.05, -2, -2, -0.05, -2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14jhe"]
-albedo_color = Color(0.6, 0.3, 0.24, 1)
+transparency = 1
+albedo_color = Color(0.6, 0.3, 0.24, 0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_0a3y4"]
 material = SubResource("StandardMaterial3D_14jhe")
@@ -31,10 +36,13 @@ mesh = SubResource("BoxMesh_j6vx6")
 shape = SubResource("ConcavePolygonShape3D_4xdrr")
 
 [node name="TurretBase" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 mesh = SubResource("BoxMesh_0a3y4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="TurretBase"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TurretBase/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_oeq2w")
+
+[node name="Tree" parent="." instance=ExtResource("1_1n7nw")]
+
+[node name="Rocks" parent="." instance=ExtResource("2_31w2j")]
