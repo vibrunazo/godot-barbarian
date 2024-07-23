@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://si8luw741mv3"]
+
+[ext_resource type="FontFile" uid="uid://bda1tt30b3g36" path="res://assets/fonts/Asap-Bold.ttf" id="1_48tie"]
+
+[resource]
+default_font = ExtResource("1_48tie")
